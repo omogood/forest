@@ -63,7 +63,11 @@ viewInput t p v toMsg =
 
 viewValidation : Model -> Html msg
 viewValidation model =
-    if model.password == model.passwordAgain then
+    if model.name == "" || model.password == "" || model.passwordAgain == "" then
+        div [ style "color" "Black" ] [ text "Prease Inputs." ]
+    else if model.password == model.passwordAgain then
         div [ style "color" "green" ] [ text "OK" ]
-    else
+    else if model.password /= model.passwordAgain then
         div [ style "color" "Red" ] [ text "Passwords do not match!" ]
+    else
+        div [ style "color" "Red" ] [ text "error !!!" ]
