@@ -1,4 +1,5 @@
-port module Main exposing (..)
+port module Example_1 exposing (..)
+
 import Browser
 import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick)
@@ -18,7 +19,8 @@ init =
 
 -- UPDATE
 
-type Msg = Increment | Decrement
+-- Msg をユニオン型で定義
+type Msg = Increment | Decrement | Reset
 
 update : Msg -> Model -> Model
 update msg model =
@@ -29,6 +31,8 @@ update msg model =
         Decrement ->
             model - 1
 
+        Reset ->
+            0
 
 -- VIEW
 
@@ -38,4 +42,8 @@ view model =
         [ button [ onClick Increment ] [text "+"]
         , div [] [ text (String.fromInt model) ]
         , button [ onClick Decrement ] [ text "-" ]
+        , button [ onClick Reset ] [ text "Reset" ]
         ]
+
+
+
